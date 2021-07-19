@@ -40,7 +40,6 @@ public class RequestController {
     @PostMapping()
     public String checkPersonInfo(@Valid Client client, BindingResult bindingResult,Model model) {
         if (bindingResult.hasErrors()) {
-            System.out.println("BINDING RESULT ERROR");
             model.addAttribute("mStatuses", Client.MaritalStatus.values());
             return "index";
         } else {

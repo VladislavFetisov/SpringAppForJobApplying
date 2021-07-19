@@ -12,11 +12,12 @@ import java.util.List;
 public interface ClientRepository extends JpaRepository<Client, Long> {
     List<Client> getClientByTelephoneNumberContains(String telephoneNumber);
 
-    List<Client> getClientByNameContains(String name);
+    List<Client> getClientBySurnameContainsIgnoreCase(String name);
 
-    List<Client> getClientByNameContainsAndSurnameContains(String name, String surname);
+    List<Client> getClientBySurnameContainsIgnoreCaseAndNameContainsIgnoreCase(String surname, String name);
 
-    List<Client> getClientByNameContainsAndSurnameContainsAndMiddleNameContains(String name, String surname, String middleName);
+    List<Client> getClientBySurnameContainsIgnoreCaseAndNameContainsIgnoreCaseAndMiddleNameContainsIgnoreCase
+            (String surname, String name, String middleName);
 
     List<Client> getClientByPassportSeriesContainsAndPassportNumberContains(String passportSeries, String passportNumber);
 }
