@@ -52,9 +52,9 @@
         </div>
         <div>
             Семейное положение:
-            <select th:field="*{maritalStatus}">
-                <option th:each="el : ${mStatuses}"
-                        th:value="${el}"
+            <select th:field="*{maritalStatus}" >
+                <option th:each="el,state : ${mStatusesInRussian}"
+                        th:value="${mStatusesInEng[state.index]}"
                         th:utext="${el}">
                 </option>
             </select>

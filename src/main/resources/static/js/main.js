@@ -1,4 +1,4 @@
-$('#button-submit-1').click(function () {
+$('#getUsers').click(function () {
     $.ajax({
         url: '/admin/clients', //here is your URL
         type: 'POST',
@@ -19,7 +19,7 @@ $('#button-submit-1').click(function () {
         }
     });
 })
-$('#button-submit-2').click(function () {
+$('#getRequests').click(function () {
     $.ajax({
         url: '/admin/requests', //here is your URL
         type: 'POST',
@@ -48,7 +48,7 @@ $('#button-submit-2').click(function () {
     });
 
 })
-$('#button-submit-3').click(function () {
+$('#getContracts').click(function () {
     $.ajax({
         url: '/admin/contracts', //here is your URL
         type: 'POST',
@@ -69,7 +69,7 @@ $('#button-submit-3').click(function () {
         }
     });
 })
-$('#button-submit-4').click(function () {
+$('#search').click(function () {
     $.ajax({
         url: '/admin/search', //here is your URL
         data: {text: $('#main-input').val()},

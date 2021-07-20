@@ -1,5 +1,6 @@
 package com.example.testcase.models;
 
+import com.example.testcase.models.enums.Decision;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,11 +29,9 @@ public class Request {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @OneToOne(mappedBy = "request", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private Contract contract;
+//    @OneToOne(mappedBy = "request", fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL)
+//    private Contract contract;
 
-    public enum Decision {
-        APPROVED, REJECTED
-    }
+
 }

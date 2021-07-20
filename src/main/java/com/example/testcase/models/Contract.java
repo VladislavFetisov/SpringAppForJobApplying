@@ -1,5 +1,6 @@
 package com.example.testcase.models;
 
+import com.example.testcase.models.enums.Status;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -15,10 +16,7 @@ public class Contract {
     @Enumerated(value = EnumType.STRING)
     private Status status;
 
-    public enum Status {
-        SIGNED, UNSIGNED
-    }
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "request_id")
-    private Request request;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "request_id")
+//    private Request request;
 }

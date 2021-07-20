@@ -58,10 +58,19 @@
         </div>
         <form th:object="${contract}">
             <label>Статус кредита:</label>
-            <output th:text="${contract.getStatus()}"></output>
             <div th:switch="${contract.getStatus()}">
-                <button th:case="${contractStatuses[1]}" type="submit" class="btn btn-success">Подписать контракт</button>
-                <output th:case="*">Поздравляем, договор подписан!</output>
+                <output th:case="${contractStatuses[0]}">Подписан
+                    <div>
+                        <output>Поздравляем, договор подписан!</output>
+                    </div>
+                </output>
+                <output th:case="*">Не подписан
+                    <div>
+                        <button
+                                type="submit" class="btn btn-success">Подписать контракт
+                        </button>
+                    </div>
+                </output>
             </div>
         </form>
     </form>
