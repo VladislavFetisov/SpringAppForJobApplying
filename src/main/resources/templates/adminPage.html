@@ -1,20 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html"></html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"></html>
 <head>
     <meta charset="UTF-8">
     <title>Admin Page</title>
-    <style>
-        table {
-            border: 1px solid #69c;
-            border-collapse: separate;
-            empty-cells: hide;
-        }
-
-        th, td {
-            border: 2px solid #69c;
-            padding: 5px;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{../static/css/main.css}"/>
 </head>
 <body>
 <table>
@@ -42,7 +31,7 @@
     </tr>
     <tr>
         <td>
-            <label for="main-input"></label><input id="main-input" value=""
+            <label for="main-input"></label><input style="" id="main-input" value=""
                                                    placeholder="ФИО, телефон, серия и номер паспорта">
             <button id="button-submit-4">Поиск</button>
         </td>
@@ -52,103 +41,6 @@
 </table>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script type="text/javascript">
-    $('#button-submit-1').click(function () {
-        $.ajax({
-            url: '/admin/clients', //here is your URL
-            type: 'POST',
-            success: function (data) {
-                const arr = Array.from(data);
-                output = $('#main-output')
-                output.empty()
-                for (var i in arr) {
-                    var obj = arr[i]
-                    output.append("<div> Имя: " + obj.name + " Фамилия: "
-                        + obj.surname + " Отчество: " +
-                        obj.middleName + " Телефон: " + obj.telephoneNumber + " Серия: " + obj.passportSeries +
-                        " Номер:" + obj.passportNumber + " паспорта</div>")
-                }
-            },
-            error: function (e) {
-
-            }
-        });
-    })
-    $('#button-submit-2').click(function () {
-        $.ajax({
-            url: '/admin/requests', //here is your URL
-            type: 'POST',
-            success: function (data) {
-                output = $('#main-output')
-                output.empty()
-                const arr = Array.from(data);
-                for (var i in arr) {
-                    var obj = arr[i]
-                    if (obj.decision === "APPROVED") {
-                        output.append("<div>" + "Номер заявки: " + obj.requestId + " Решение: " + obj.decision +
-                            " Сумма кредита: " + obj.loanSum + " Срок(в месяцах): " + obj.monthsAmount +
-                            " Имя клиента: " + obj.clientName + " Фамилия: " + obj.clientSurname + " Отчество: " +
-                            obj.clientMiddleName + "</div>")
-                    } else {
-                        output.append("<div>" + "Номер заявки: " + obj.requestId + " Решение: " + obj.decision
-                            + " Имя клиента: " + obj.clientName + " Фамилия: " + obj.clientSurname + " Отчество: " +
-                            obj.clientMiddleName + "</div>")
-                    }
-
-                }
-            },
-            error: function (e) {
-
-            }
-        });
-
-    })
-    $('#button-submit-3').click(function () {
-        $.ajax({
-            url: '/admin/contracts', //here is your URL
-            type: 'POST',
-            success: function (data) {
-                const arr = Array.from(data);
-                output = $('#main-output')
-                output.empty()
-                for (var i in arr) {
-                    var obj = arr[i]
-                    output.append("<div>" + " Номер договора: " + obj.contractId
-                        + " Статус: " + obj.status + " Сумма кредита: " + obj.loanSum + " Срок(в месяцах): " + obj.monthsAmount +
-                        " Имя клиента: " + obj.clientName + " Фамилия: " + obj.clientSurname + " Отчество: " +
-                        obj.clientMiddleName + "</div>")
-                }
-            },
-            error: function (e) {
-
-            }
-        });
-    })
-    $('#button-submit-4').click(function () {
-        $.ajax({
-            url: '/admin/search', //here is your URL
-            data: {text: $('#main-input').val()},
-            type: 'POST',
-            success: function (data) {
-                output = $('#main-output')
-                output.empty()
-                const arr = Array.from(data);
-                if (arr.length !== 0) {
-                    for (var i in arr) {
-                        var obj = arr[i]
-                        output.append("<div> Имя: " + obj.name + " Фамилия: "
-                            + obj.surname + " Отчество: " +
-                            obj.middleName + " Телефон: " + obj.telephoneNumber + " Серия: " + obj.passportSeries +
-                            " Номер:" + obj.passportNumber + " паспорта</div>")
-                    }
-                } else output.append("<div>Такого пользователя нет в системе</div>")
-            },
-            error: function (e) {
-
-            }
-        });
-    })
-</script>
-
+<script type="text/javascript" th:src="@{../static/js/main.js}"></script>
 </body>
 </html>
