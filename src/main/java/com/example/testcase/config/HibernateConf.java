@@ -47,10 +47,10 @@ public class HibernateConf {
     private Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty(
-                "hibernate.hbm2ddl.auto", "create-drop");
+                "hibernate.hbm2ddl.auto", "update");
         hibernateProperties.setProperty(
                 "hibernate.dialect", "org.hibernate.dialect.PostgreSQL95Dialect");
-
+        hibernateProperties.setProperty("hibernate.show_sql", "true");
         return hibernateProperties;
     }
 }

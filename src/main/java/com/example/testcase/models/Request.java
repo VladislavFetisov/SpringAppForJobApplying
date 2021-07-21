@@ -29,9 +29,9 @@ public class Request {
     @JoinColumn(name = "client_id")
     private Client client;
 
-//    @OneToOne(mappedBy = "request", fetch = FetchType.LAZY,
-//            cascade = CascadeType.ALL)
-//    private Contract contract;
+    @OneToOne(mappedBy = "request", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Contract contract;
 
 
 }

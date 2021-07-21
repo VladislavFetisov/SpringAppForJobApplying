@@ -16,7 +16,8 @@ public class Contract {
     @Enumerated(value = EnumType.STRING)
     private Status status;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "request_id")
-//    private Request request;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "request_id")
+    private Request request;
 }

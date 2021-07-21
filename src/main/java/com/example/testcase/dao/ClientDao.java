@@ -10,13 +10,23 @@ import org.hibernate.service.ServiceRegistry;
 
 import java.util.List;
 
-public interface ClientDao {
+public interface ClientDao extends Crud<Client> {
 
-    List<Client> getClients();
+    @Override
+    List<Client> findAll();
+
+    @Override
+    Client save(Client client);
 
     List<Client> getClientsBySurname(String surname);
 
     List<Client> getClientsBySurnameAndName(String surname, String name);
 
     List<Client> getClientsBySurnameAndNameAndMiddleName(String surname, String name, String middleName);
+
+    List<Client> getClientsByTelephoneNumber(String telephoneNumber);
+
+    List<Client> getClientByPassportSeriesAndNumber(String passportSeries, String passportNumber);
+
+    List<Client> getClientByPassportSeries(String passportSeries);
 }

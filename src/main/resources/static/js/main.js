@@ -6,13 +6,7 @@ $('#getUsers').click(function () {
             const arr = Array.from(data);
             output = $('#main-output')
             output.empty()
-            for (var i in arr) {
-                var obj = arr[i]
-                output.append("<div> Имя: " + obj.name + " Фамилия: "
-                    + obj.surname + " Отчество: " +
-                    obj.middleName + " Телефон: " + obj.telephoneNumber + " Серия: " + obj.passportSeries +
-                    " Номер:" + obj.passportNumber + " паспорта</div>")
-            }
+            fillOutput(arr)
         },
         error: function (e) {
 
@@ -69,27 +63,62 @@ $('#getContracts').click(function () {
         }
     });
 })
-$('#search').click(function () {
+$('#fullNameSearch').click(function () {
     $.ajax({
-        url: '/admin/search', //here is your URL
-        data: {text: $('#main-input').val()},
+        url: '/admin/search/fullName', //here is your URL
+        data: {text: $('#fullNameInput').val()},
         type: 'POST',
         success: function (data) {
             output = $('#main-output')
             output.empty()
             const arr = Array.from(data);
-            if (arr.length !== 0) {
-                for (var i in arr) {
-                    var obj = arr[i]
-                    output.append("<div> Имя: " + obj.name + " Фамилия: "
-                        + obj.surname + " Отчество: " +
-                        obj.middleName + " Телефон: " + obj.telephoneNumber + " Серия: " + obj.passportSeries +
-                        " Номер:" + obj.passportNumber + " паспорта</div>")
-                }
-            } else output.append("<div>Такого пользователя нет в системе</div>")
+            fillOutput(arr)
         },
         error: function (e) {
 
         }
     });
 })
+$('#telephoneSearch').click(function () {
+    $.ajax({
+        url: '/admin/search/telephone', //here is your URL
+        data: {text: $('#telephoneInput').val()},
+        type: 'POST',
+        success: function (data) {
+            output = $('#main-output')
+            output.empty()
+            const arr = Array.from(data);
+            fillOutput(arr)
+        },
+        error: function (e) {
+
+        }
+    });
+})
+$('#passportSearch').click(function () {
+    $.ajax({
+        url: '/admin/search/passport', //here is your URL
+        data: {text: $('#passportInput').val()},
+        type: 'POST',
+        success: function (data) {
+            output = $('#main-output')
+            output.empty()
+            const arr = Array.from(data);
+            fillOutput(arr)
+        },
+        error: function (e) {
+
+        }
+    });
+})
+function fillOutput(arr){
+    if (arr.length !== 0) {
+        for (var i in arr) {
+            var obj = arr[i]
+            output.append("<div> Фамилия: " + obj.surname + " Имя: "
+                + obj.name + " Отчество: " +
+                obj.middleName + " Телефон: " + obj.telephoneNumber + " Серия: " + obj.passportSeries +
+                " Номер:" + obj.passportNumber + " паспорта</div>")
+        }
+    } else output.append("<div>Такого пользователя нет в системе</div>")
+}
