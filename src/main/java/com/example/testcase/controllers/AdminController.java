@@ -81,11 +81,7 @@ public class AdminController {
     public List<ClientDto> searchByPassport(Text text) {
         String[] params = text.getText().split(" ");
         List<Client> result;
-        if (params.length == 1) {
-            result = clientDao.getClientByPassportSeries(params[0]);
-        } else {
-            result = clientDao.getClientByPassportSeriesAndNumber(params[0], params[1]);
-        }
+        result = clientDao.getClientByPassportSeriesAndNumber(params[0], params[1]);
         if (result == null) return null;
         return ClientDto.from(result);
     }

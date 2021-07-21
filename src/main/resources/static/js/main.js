@@ -63,10 +63,18 @@ $('#getContracts').click(function () {
         }
     });
 })
-$('#fullNameSearch').click(function () {
+$('#AllParametersSearch').click(function () {
+    const input = $('#AllParametersInput').val()
+    const arr = input.split(" ")
+    let add = '';
+    if (arr[0].match(/[0-9]+/)) {
+        if (arr.length === 1)
+            add = 'search/telephone'
+        else add = 'search/passport'
+    } else add = 'search/fullName'
     $.ajax({
-        url: '/admin/search/fullName', //here is your URL
-        data: {text: $('#fullNameInput').val()},
+        url: '/admin/' + add, //here is your URL
+        data: {text: input},
         type: 'POST',
         success: function (data) {
             output = $('#main-output')
@@ -79,39 +87,8 @@ $('#fullNameSearch').click(function () {
         }
     });
 })
-$('#telephoneSearch').click(function () {
-    $.ajax({
-        url: '/admin/search/telephone', //here is your URL
-        data: {text: $('#telephoneInput').val()},
-        type: 'POST',
-        success: function (data) {
-            output = $('#main-output')
-            output.empty()
-            const arr = Array.from(data);
-            fillOutput(arr)
-        },
-        error: function (e) {
 
-        }
-    });
-})
-$('#passportSearch').click(function () {
-    $.ajax({
-        url: '/admin/search/passport', //here is your URL
-        data: {text: $('#passportInput').val()},
-        type: 'POST',
-        success: function (data) {
-            output = $('#main-output')
-            output.empty()
-            const arr = Array.from(data);
-            fillOutput(arr)
-        },
-        error: function (e) {
-
-        }
-    });
-})
-function fillOutput(arr){
+function fillOutput(arr) {
     if (arr.length !== 0) {
         for (var i in arr) {
             var obj = arr[i]
