@@ -35,7 +35,10 @@ public class RequestDaoImpl implements RequestDao {
     public List<Request> findAll() {
         assert sessionFactory != null;
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from Request");
+        Query query = session.
+                createQuery("select req from Request req " +
+                        "join fetch req.client " +
+                        "join fetch req.contract");
         return (List<Request>) query.list();
     }
 

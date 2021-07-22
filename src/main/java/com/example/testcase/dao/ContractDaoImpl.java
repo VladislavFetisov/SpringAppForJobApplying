@@ -37,7 +37,7 @@ public class ContractDaoImpl implements ContractDao {
     public List<Contract> findAll() {
         assert sessionFactory != null;
         Session session = sessionFactory.openSession();
-        Query query = session.createQuery("from Contract ");
+        Query query = session.createQuery("from Contract contr join fetch contr.request req join fetch req.client");
         return (List<Contract>) query.list();
     }
 
