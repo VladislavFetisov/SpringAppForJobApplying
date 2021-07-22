@@ -8,11 +8,11 @@ import com.example.testcase.dto.ContractDto;
 import com.example.testcase.dto.RequestDto;
 import com.example.testcase.models.Client;
 import com.example.testcase.models.Text;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @Controller
 @RequestMapping("/admin")
 public class AdminController {

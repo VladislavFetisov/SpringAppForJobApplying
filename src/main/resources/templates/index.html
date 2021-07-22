@@ -12,6 +12,7 @@
     <div class="form-style-2-heading">
         Заявка на получение кредита
     </div>
+    <p th:if="${rejected}" class="isa_warning">К сожалению заявка отклонена</p>
     <form action="#" th:action="@{/creditRequest}" th:object="${client}" method="post">
         <h2>Персональные данные</h2>
         <div class="form-group">
@@ -52,7 +53,7 @@
         </div>
         <div>
             Семейное положение:
-            <select th:field="*{maritalStatus}" >
+            <select th:field="*{maritalStatus}">
                 <option th:each="el,state : ${mStatusesInRussian}"
                         th:value="${mStatusesInEng[state.index]}"
                         th:utext="${el}">

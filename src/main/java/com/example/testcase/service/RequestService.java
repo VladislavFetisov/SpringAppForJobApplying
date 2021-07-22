@@ -22,7 +22,7 @@ public class RequestService {
         Random random = new Random();
         request.setClient(client);
         client.getRequests().add(request);
-        if (random.nextBoolean()) {
+        if (false) {
             request.setDecision(Decision.APPROVED);
             request.setLoanSum((client.getCreditAmount()));
             request.setMonthsAmount(String.valueOf(random.nextInt(12) + 1));
